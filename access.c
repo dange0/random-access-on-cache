@@ -11,8 +11,8 @@ double tvgetf(){
     return sec;
 }
 
-double sequence_access(double size){
-    int array[(int)size];
+double sequence_access(int size){
+    int array[size];
     int result;
     int i;
     double t1 = tvgetf();
@@ -23,16 +23,16 @@ double sequence_access(double size){
     return t2 - t1;
 }
 
-double random_access(double size){
-    int array[(int)size];
-    int access_list[(int)size];
+double random_access(int size){
+    int array[size];
+    int access_list[size];
     int result;
     int i;
     for(i=0; i<(int)size; i++){
-        access_list[i] = rand() % (int)size;
+        access_list[i] = rand() % size;
     }
     double t1 = tvgetf();
-    for(i=0; i<(int)size; i++){
+    for(i=0; i<size; i++){
         result += array[access_list[i]];
     }
     double t2 = tvgetf();

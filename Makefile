@@ -2,13 +2,13 @@ CC = gcc
 CFLAGS = -O0 -g -Wall
 LIBS = -lm
 
-all: main
+all: main check
 
 main: access.c main.c
-	$(CC) $(CFLAGS) $(LIBS) -o main main.c access.c
+	$(CC) $(CFLAGS) main.c access.c $(LIBS) -o run 
 
-check: main
-	./main
+check: run
+	./run
 
 clean:
 	rm -f *.o main

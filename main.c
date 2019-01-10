@@ -3,14 +3,14 @@
 #include <math.h>
 #include "access.h"
 
-#define MAX 40
+#define MAX 20
 
 
 int main(){
     double result[MAX][2];
-    double size = 0;
+    int size = 0;
     for(int i = 0; i < MAX; i++){
-        size = pow(2,i);
+        size = (int)pow(2,i);
         result[i][0] = sequence_access(size);
         result[i][1] = random_access(size);
     }
@@ -20,8 +20,8 @@ int main(){
     f_ram = fopen("result_ram.txt","w");
     
     for(int i = 0; i < MAX; i++){
-        fprintf(f_seq, "%lf %lf\n", pow(2,i), result[i][0]);
-        fprintf(f_ram, "%lf %lf\n", pow(2,i), result[i][1]);
+        fprintf(f_seq, "2^%d %lf\n", i, result[i][0]);
+        fprintf(f_ram, "2^%d %lf\n", i, result[i][1]);
     }
     
     fclose(f_seq);

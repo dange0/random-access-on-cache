@@ -6,5 +6,5 @@
 #define TEST_TIMES 100
 
 double tvgetf();
-double random_access(double size);
-double sequence_access(double size);
+double random_access(int size);
+double sequence_access(int size);
