@@ -20,8 +20,8 @@ int main(){
     f_ram = fopen("result_ram.txt","w");
     
     for(int i = 0; i < MAX; i++){
-        fprintf(f_seq, "2^%d %lf\n", i, result[i][0]);
-        fprintf(f_ram, "2^%d %lf\n", i, result[i][1]);
+        fprintf(f_seq, "%d %lf\n", (int)pow(2,i), result[i][0]);
+        fprintf(f_ram, "%d %lf\n", (int)pow(2,i), result[i][1]);
     }
     
     fclose(f_seq);
