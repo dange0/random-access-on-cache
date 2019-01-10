@@ -1,1 +1,0 @@
-void single(int size);
