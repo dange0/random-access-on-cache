@@ -5,11 +5,22 @@
 
 
 int main(){
-    
+    double result[MAX][2];
     for(int i; i<MAX; i++){
-        sequence_access(i);
-        random_access(i);
-        
+        result[i][0] = sequence_access(i);
+        result[i][1] = random_access(i);
     }
     
+    int f_seq, f_ram;
+    f_seq = fopen("result_seq.txt","w");
+    f_ram = fopen("result_ram.txt","w");
+    
+    for(int i; i<MAX; i++){
+        fprintf(f_seq, "%d %lf", i, result[i][0]);
+        fprintf(f_ram, "%d %lf", i, result[i][1]);
+    }
+    
+    fclose(f_seq);
+    fclose(f_ram);
+    return 0;
 }

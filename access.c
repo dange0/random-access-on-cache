@@ -1,3 +1,4 @@
+#include "access.h"
 double tvgetf(){
     struct timespec ts;
     double sec;
@@ -16,7 +17,7 @@ double sequence_access(int size){
     int i;
     double t1 = tvgetf();
     for(i=0; i<size; i++){
-        result += array[i]
+        result += array[i];
     }
     double t2 = tvgetf();
     return t2 - t1;
@@ -27,12 +28,12 @@ double random_access(int size){
     int access_list[size];
     int result;
     int i;
-    for(i=0; i<size;i++){
-        access_list[i] = rand() % size
+    for(i=0; i<size; i++){
+        access_list[i] = rand() % size;
     }
     double t1 = tvgetf();
-    for(i=0;i<size;i++){
-        result += array[access_list[i]]
+    for(i=0; i<size; i++){
+        result += array[access_list[i]];
     }
     double t2 = tvgetf();
     return t2 - t1;
