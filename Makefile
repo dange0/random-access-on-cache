@@ -12,3 +12,5 @@ clean:
 	rm -rf $(obj) $(exe)
 plot:
 	gnuplot runtime.gp
+
+

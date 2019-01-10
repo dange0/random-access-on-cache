@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "access.h"
-#define MAX 10000
+#define MAX 1000000
 
 
 int main(){
