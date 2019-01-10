@@ -1,3 +1,0 @@
-void single(int size){
-    
-}
