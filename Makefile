@@ -15,4 +15,3 @@ clean:
 
 plot:
 	gnuplot runtime.gp
-

@@ -2,8 +2,12 @@
 #include <stdlib.h>
 #include <math.h>
 #include "access.h"
+<<<<<<< HEAD
 
 #define MAX 40
+=======
+#define MAX 1000000
+>>>>>>> 0d2b7f2b2ef755bb743f10273043402633d2a405
 
 
 int main(){
