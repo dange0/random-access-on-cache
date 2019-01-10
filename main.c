@@ -1,9 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "single.h"
-#include "random_cache.h"
+#include "access.h"
+#define MAX 100
+
 
 int main(){
-    single(1);
+    
+    for(int i; i<MAX; i++){
+        sequence_access(i);
+        random_access(i);
+        
+    }
     
 }
