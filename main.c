@@ -1,14 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "access.h"
-#define MAX 10000
+
+#define MAX 40
 
 
 int main(){
     double result[MAX][2];
+    double size = 0;
     for(int i = 0; i < MAX; i++){
-        result[i][0] = sequence_access(i);
-        result[i][1] = random_access(i);
+        size = pow(2,i);
+        result[i][0] = sequence_access(size);
+        result[i][1] = random_access(size);
     }
     
     int f_seq, f_ram;
@@ -16,8 +20,8 @@ int main(){
     f_ram = fopen("result_ram.txt","w");
     
     for(int i = 0; i < MAX; i++){
-        fprintf(f_seq, "%d %lf\n", i, result[i][0]);
-        fprintf(f_ram, "%d %lf\n", i, result[i][1]);
+        fprintf(f_seq, "%lf %lf\n", pow(2,i), result[i][0]);
+        fprintf(f_ram, "%lf %lf\n", pow(2,i), result[i][1]);
     }
     
     fclose(f_seq);

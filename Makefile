@@ -1,14 +1,18 @@
-CC:=gcc
-exe:=main
-obj:=main.o access.o 
+CC = gcc
+CFLAGS = -O0 -g -Wall
+LIBS = -lm
 
-all:$(obj)
-	$(CC) -o $(exe) $(obj)  
-%.o:%.c
-	$(CC) -c $^ -o $@
+all: main
 
-.PHONY:clean
+main: access.c main.c
+	$(CC) $(CFLAGS) $(LIBS) -o main main.c access.c
+
+check: main
+	./main
+
 clean:
-	rm -rf $(obj) $(exe)
+	rm -f *.o main
+
 plot:
 	gnuplot runtime.gp
+
