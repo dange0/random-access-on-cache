@@ -1,6 +1,7 @@
 #include "access.h"
 
-double tvgetf(){
+double tvgetf()
+{
     struct timespec ts;
     double sec;
 
@@ -9,38 +10,34 @@ double tvgetf(){
     sec /= 1e9;
     sec += ts.tv_sec;
 
-    return sec;
+    return sec * 1e9;
 }
 
-double sequence_access(unsigned int size){
-    int array[size];
-    int result;
-    int i;
-    int access_list[size];
-    for(i=0; i<size; i++){
-        access_list[i] = i;
+double sequence_access(unsigned int size)
+{
+    int array[size], index[size], result, i;
+    for (i = 0; i < size; i++) {
+        index[i] = i;
     }
 
     double t1 = tvgetf();
-    for(i=0; i<size; i++){
-        result += array[access_list[i]];
+    for (i = 0; i < size; i++) {
+        result += array[index[i]];
     }
     double t2 = tvgetf();
-    return t2 - t1;
+    return (t2 - t1) / size;
 }
 
-double random_access(unsigned int size){
-    int array[size];
-    int access_list[size];
-    int result;
-    int i;
-    for(i=0; i<(int)size; i++){
-        access_list[i] = rand() % size;
+double random_access(unsigned int size)
+{
+    int array[size], index[size], result, i;
+    for (i = 0; i < (int) size; i++) {
+        index[i] = rand() % size;
     }
     double t1 = tvgetf();
-    for(i=0; i<size; i++){
-        result += array[access_list[i]];
+    for (i = 0; i < size; i++) {
+        result += array[index[i]];
     }
     double t2 = tvgetf();
-    return t2 - t1;
+    return (t2 - t1) / size;
 }
