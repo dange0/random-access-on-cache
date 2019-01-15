@@ -11,7 +11,7 @@ check: run
 	./run
 
 clean:
-	rm -f *.o run
+	rm -f *.o run *.png *.txt
 
 plot:
 	gnuplot runtime.gp
