@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -O0 -g -Wall
+CFLAGS = -O0 -g -Wall -m32
 LIBS = -lm
 
 all: ulimit main check plot
@@ -7,8 +7,8 @@ all: ulimit main check plot
 ulimit:
 	ulimit -s unlimited
 
-main: access.c main.c
-	$(CC) $(CFLAGS) main.c access.c $(LIBS) -o run 
+main: *.c
+	$(CC) $(CFLAGS) *.c $(LIBS) -o run 
 
 check: run
 	./run

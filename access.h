@@ -1,10 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
+struct Para_struct{
+    int size;
+    int *index;
+};
 
-#define TEST_TIMES 100
-
-double tvgetf();
-double random_access(unsigned int size);
-double sequence_access(unsigned int size);
+double get_seq_result(unsigned int size);
+double get_rand_result(unsigned int size);
+void access(struct Para_struct para);

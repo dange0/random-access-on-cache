@@ -11,8 +11,8 @@ int main(){
     unsigned int size = 0;
     for(int i = 0; i < MAX; i++){
         size = (unsigned int)pow(2,i);
-        result[i][0] = sequence_access(size);
-        result[i][1] = random_access(size);
+        result[i][0] = get_seq_result(size);
+        result[i][1] = get_rand_result(size);
     }
     
     FILE *f_seq, *f_ram;

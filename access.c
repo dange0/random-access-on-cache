@@ -1,46 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "clock.h"
+#include "fcyc.h"
 #include "access.h"
+#include "lran2.h"
 
-double tvgetf(){
-    struct timespec ts;
-    double sec;
 
-    clock_gettime(CLOCK_REALTIME, &ts);
-    sec = ts.tv_nsec;
-    sec /= 1e9;
-    sec += ts.tv_sec;
-
-    return sec;
+double get_seq_result(unsigned int size){
+    int index_list[size], i;
+    for(i=0; i<size; i++){
+        index_list[i] = i;
+    }
+    struct Para_struct seq_para;
+    seq_para.size = size;
+    seq_para.index = index_list;
+    
+    return fcyc(access,&seq_para);
 }
 
-double sequence_access(unsigned int size){
-    int array[size];
-    int result;
-    int i;
-    int access_list[size];
-    for(i=0; i<size; i++){
-        access_list[i] = i;
-    }
 
-    double t1 = tvgetf();
+
+double get_rand_result(unsigned int size){
+    int index_list[size], i;
     for(i=0; i<size; i++){
-        result += array[access_list[i]];
+        index_list[i] = rand() % size;
     }
-    double t2 = tvgetf();
-    return t2 - t1;
+    struct Para_struct rand_para;
+    rand_para.size = size;
+    rand_para.index = index_list;
+    
+    return fcyc(access,&rand_para);
 }
 
-double random_access(unsigned int size){
+void access(struct Para_struct para){
+    int size = para.size;
+    int *index = para.index;
+    int result = 0;
     int array[size];
-    int access_list[size];
-    int result;
-    int i;
-    for(i=0; i<(int)size; i++){
-        access_list[i] = rand() % size;
+    for(int i=0; i<size; i++){
+        result += array[index[i]];
     }
-    double t1 = tvgetf();
-    for(i=0; i<size; i++){
-        result += array[access_list[i]];
-    }
-    double t2 = tvgetf();
-    return t2 - t1;
 }
