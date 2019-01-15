@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -O0 -g -Wall
 LIBS = -lm
 
-all: main check
+all: main check plot
 
 main: access.c main.c
 	$(CC) $(CFLAGS) main.c access.c $(LIBS) -o run 

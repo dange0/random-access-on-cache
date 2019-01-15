@@ -5,5 +5,4 @@ set title 'perfomance comparison'
 set term png enhanced font 'Verdana,10'
 set output 'runtime.png'
 
-plot "seq_access" with linespoints , "random_access"  with linespoints
-
+plot "result_seq.txt" with linespoints , "result_ram.txt"  with linespoints
