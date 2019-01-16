@@ -1,26 +1,5 @@
 #include "access.h"
 
-
-long cpu_hz;
-
-void cpu_init()
-{
-    cpu_hz = read_cpu_freq();
-}
-
-double tvgetf()
-{
-    struct timespec ts;
-    double sec;
-
-    clock_gettime(CLOCK_REALTIME, &ts);
-    sec = ts.tv_nsec;
-    sec /= 1e9;
-    sec += ts.tv_sec;
-
-    return sec * cpu_hz;
-}
-
 double sequence_access(unsigned int size)
 {
     char array[size];

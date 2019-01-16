@@ -3,8 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "cpu.h"
+#include "lran2.h"
 
-void cpu_init();
-double tvgetf();
 double random_access(unsigned int size);
 double sequence_access(unsigned int size);

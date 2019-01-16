@@ -6,6 +6,8 @@
 
 enum error_type { TOO_FEW_ARGS, WRONG_ARGS, READ_ERROR };
 
+long cpu_hz;
+
 void runtime_error_message(int type)
 {
     switch (type) {
@@ -21,14 +23,8 @@ void runtime_error_message(int type)
     default:
         printf("Unknown error\n");
     }
-    help_message();
 exit_program:
     exit(1);
-}
-
-void help_message()
-{
-    return 0;
 }
 
 
@@ -49,4 +45,22 @@ long read_cpu_freq()
     }
     fclose(cpu_file);
     return atol(info_line) * 1000;
+}
+
+
+void cpu_init()
+{
+    cpu_hz = read_cpu_freq();
+}
+
+double tvgetf()
+{
+    struct timespec ts;
+    double sec;
+
+    clock_gettime(CLOCK_REALTIME, &ts);
+    sec = ts.tv_nsec;
+    sec /= 1e9;
+    sec += ts.tv_sec;
+    return sec * cpu_hz;
 }

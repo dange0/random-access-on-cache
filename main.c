@@ -6,6 +6,7 @@
 #define MAX 31
 
 
+
 int main()
 {
     double result[MAX][2];

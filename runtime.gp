@@ -1,6 +1,6 @@
 reset
-set xlabel 'element'
-set ylabel 'time'
+set xlabel 'element size (2^x)'
+set ylabel 'cycle per element'
 set title 'perfomance comparison'
 set term png enhanced font 'Verdana,10'
 set output 'runtime.png'
