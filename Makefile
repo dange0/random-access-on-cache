@@ -7,8 +7,8 @@ all: ulimit main check plot
 ulimit:
 	ulimit -s unlimited
 
-main: access.c main.c
-	$(CC) $(CFLAGS) main.c access.c $(LIBS) -o run 
+main: access.c main.c cpu.c
+	$(CC) $(CFLAGS) main.c cpu.c access.c $(LIBS) -o run 
 
 check: run
 	./run

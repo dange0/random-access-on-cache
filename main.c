@@ -10,6 +10,7 @@ int main()
 {
     double result[MAX][2];
     unsigned int size = 0;
+    cpu_init();
     for (int i = 10; i < MAX; i++) {
         size = (unsigned int) pow(2, i);
         result[i][0] = sequence_access(size);

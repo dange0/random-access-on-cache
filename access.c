@@ -1,5 +1,12 @@
 #include "access.h"
 
+
+long cpu_hz;
+
+void cpu_init(){
+    cpu_hz = read_cpu_freq();
+}
+
 double tvgetf()
 {
     struct timespec ts;
@@ -10,12 +17,14 @@ double tvgetf()
     sec /= 1e9;
     sec += ts.tv_sec;
 
-    return sec * 1e9;
+    return sec * cpu_hz;
 }
 
 double sequence_access(unsigned int size)
 {
-    int array[size], index[size], result, i;
+    char array[size];
+    int index[size], result, i;
+    
     for (i = 0; i < size; i++) {
         index[i] = i;
     }
@@ -30,7 +39,9 @@ double sequence_access(unsigned int size)
 
 double random_access(unsigned int size)
 {
-    int array[size], index[size], result, i;
+    char array[size];
+    int index[size], result, i;
+    
     for (i = 0; i < (int) size; i++) {
         index[i] = rand() % size;
     }

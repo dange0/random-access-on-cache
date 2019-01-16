@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include "cpu.h"
 
-#define TEST_TIMES 100
-
+void cpu_init();
 double tvgetf();
 double random_access(unsigned int size);
 double sequence_access(unsigned int size);
