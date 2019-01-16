@@ -3,7 +3,8 @@
 
 long cpu_hz;
 
-void cpu_init(){
+void cpu_init()
+{
     cpu_hz = read_cpu_freq();
 }
 
@@ -24,7 +25,7 @@ double sequence_access(unsigned int size)
 {
     char array[size];
     int index[size], result, i;
-    
+    result = 0;
     for (i = 0; i < size; i++) {
         index[i] = i;
     }
@@ -41,7 +42,7 @@ double random_access(unsigned int size)
 {
     char array[size];
     int index[size], result, i;
-    
+    result = 0;
     for (i = 0; i < (int) size; i++) {
         index[i] = rand() % size;
     }
