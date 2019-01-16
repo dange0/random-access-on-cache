@@ -5,7 +5,30 @@
 
 #define MAX 31
 
+int compare(const void *arg1, const void *arg2)
+{
+    if (*(double *) arg1 > *(double *) arg2)
+        return 1;
+    else if (*(double *) arg1 < *(double *) arg2)
+        return -1;
+    else
+        return 0;
+}
 
+double avg_result(double (*func)(unsigned int), unsigned int size)
+{
+    double result[10];
+    int i;
+    for (i = 0; i < 10; i++) {
+        result[i] = func(size);
+    }
+    qsort(result, 10, sizeof(double), compare);
+    double avg = 0;
+    for (i = 2; i < 8; i++) {
+        avg += result[i];
+    }
+    return avg / 6;
+}
 
 int main()
 {
@@ -14,8 +37,8 @@ int main()
     cpu_init();
     for (int i = 10; i < MAX; i++) {
         size = (unsigned int) pow(2, i);
-        result[i][0] = sequence_access(size);
-        result[i][1] = random_access(size);
+        result[i][0] = avg_result(sequence_access, size);
+        result[i][1] = avg_result(random_access, size);
     }
 
     FILE *f_seq, *f_ram;
@@ -23,8 +46,8 @@ int main()
     f_ram = fopen("result_ram.txt", "w");
 
     for (int i = 10; i < MAX; i++) {
-        fprintf(f_seq, "%d %lf\n", i, result[i][0]);
-        fprintf(f_ram, "%d %lf\n", i, result[i][1]);
+        fprintf(f_seq, "%u %lf\n", (unsigned int) pow(2, i), result[i][0]);
+        fprintf(f_ram, "%u %lf\n", (unsigned int) pow(2, i), result[i][1]);
     }
 
     fclose(f_seq);
