@@ -5,8 +5,10 @@ EXEC = main
 OBJS = cpu.o access.o 
 CPU_FREQ = sudo cpupower frequency-set -g
 STACK_SIZE = ulimit -s unlimited
-
+STACK_INFO = ulimit -s
 GIT_HOOKS := .git/hooks/applied
+
+
 all: $(GIT_HOOKS) $(EXEC)
 
 $(GIT_HOOKS):
@@ -25,17 +27,16 @@ boost:
 	@$(CPU_FREQ) performance > /dev/null
 	@sleep 1
 
-
 recover:
 	@$(CPU_FREQ) powersave > /dev/null
 	@sleep 1
 
 run: $(EXEC) boost
-	./$(EXEC)
+	@$(STACK_SIZE) && ./$(EXEC)
 	@$(MAKE) -s recover
 
 clean:
-	rm -f *.o run *.png *.txt
+	rm -f *.o main *.png *.txt
 
 plot:
 	gnuplot runtime.gp

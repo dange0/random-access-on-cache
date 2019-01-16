@@ -28,19 +28,7 @@ exit_program:
 
 void help_message()
 {
-    printf("Usage ./test_poly [Options] [argument]\n");
-    printf("Available options: \n");
-    printf(
-        "\tdefault: run every instances of unrolling number and split "
-        "number\n");
-    printf("\t         and show the best CPE found on the system\n");
-    printf("\t         also look for the processor model name and max freq\n");
-    printf("\tplot: plot comparison graph for every argument listed\n");
-    printf("\t      issue- shall we set maximum argument number?\n");
-    printf("\tcompare: evaluate CPE for different argument,\n");
-    printf("\t            and look for the best one\n");
-    printf("\thelp: show this help message again\n\n");
-    printf("\tSAMPLE: ./test_poly compare 1,1 2,2 3,3\n");
+    return 0;
 }
 
 
