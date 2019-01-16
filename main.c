@@ -17,17 +17,17 @@ int compare(const void *arg1, const void *arg2)
 
 double avg_result(double (*func)(unsigned int), unsigned int size)
 {
-    double result[10];
+    double result[20];
     int i;
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < 20; i++) {
         result[i] = func(size);
     }
-    qsort(result, 10, sizeof(double), compare);
+    qsort(result, 20, sizeof(double), compare);
     double avg = 0;
-    for (i = 2; i < 8; i++) {
+    for (i = 5; i < 15; i++) {
         avg += result[i];
     }
-    return avg / 6;
+    return avg / 10;
 }
 
 int main()
@@ -35,7 +35,7 @@ int main()
     double result[MAX][2];
     unsigned int size = 0;
     cpu_init();
-    for (int i = 10; i < MAX; i++) {
+    for (int i = 0; i < MAX; i++) {
         size = (unsigned int) pow(2, i);
         result[i][0] = avg_result(sequence_access, size);
         result[i][1] = avg_result(random_access, size);
@@ -45,7 +45,7 @@ int main()
     f_seq = fopen("result_seq.txt", "w");
     f_ram = fopen("result_ram.txt", "w");
 
-    for (int i = 10; i < MAX; i++) {
+    for (int i = 0; i < MAX; i++) {
         fprintf(f_seq, "%u %lf\n", (unsigned int) pow(2, i), result[i][0]);
         fprintf(f_ram, "%u %lf\n", (unsigned int) pow(2, i), result[i][1]);
     }

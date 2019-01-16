@@ -3,5 +3,5 @@
 *.o
 *.txt
 *.png
-run
 .gdb*
+main

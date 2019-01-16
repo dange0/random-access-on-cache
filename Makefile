@@ -32,7 +32,7 @@ recover:
 	@sleep 1
 
 run: $(EXEC) boost
-	@$(STACK_SIZE) && ./$(EXEC)
+	@$(STACK_SIZE) && taskset --cpu-list 0 ./$(EXEC)
 	@$(MAKE) -s recover
 
 clean:
